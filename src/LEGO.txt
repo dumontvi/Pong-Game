@@ -1,0 +1,70 @@
+.equ HEX0_3, 0xFF200020 #Adress of HEX 0-3	 	
+.equ HEX4_5,0xFF200030	#Adress of HEX 4-5	
+.equ LEDR, 0xFF200000   #Adress of RED LEDs	 	
+.equ JP1, 0xFF200060    #Adress of GPIO_1
+.equ JP1_IRQ, 0x0800    #Adress of JP1-IRQ
+
+
+#Register use:
+
+#r3 - Adress of JP1/JP1-IRQ
+#r4 - Adress of HEXs
+
+
+
+
+/*////////////////////////////////////////////////////MAIN/////////////////////////////////////////////////////////////////////*/
+
+
+.section .text
+.global _start
+
+_start:
+
+movia r3,JP1
+
+movia  r2, 0x07f557ff  #sets direction for motors and sensors of JP1
+stwio  r2,4(r3)        #store the value into JP1
+
+movia r2, 0xffffffff   #initialize all motors and sensors to 0
+stwio r2, 0(r3)        #store into JP1 
+
+#INITIALIZE SENSOR 1
+movia r2, 0xfabffbff   #enable sensor 1 and set threshold value
+stwio r2, 0(r3)        #store into JP1
+
+#INITIALIZE SENSOR 2
+movia r2, 0xfabfefff   #enable sensor 2 and set threshold value
+stwio r2, 0(r3)        #store into JP1
+
+#ENABLE STATE MODE
+movia r2, 0xffdfffff   #enable state mode
+stwio r2, 0(r3)        #store into JP1
+
+#ENABLE INTTERUPTS
+movia r2, 0xf8000000   #enable interrupts on all sensors
+stwio r2, 0(r3)        #store into JP1
+
+ movia  r3,ADDR_JP1_IRQ  #enable interrupt for JP1(set bit 11)
+ wrctl	ctl3,r3			
+
+ movia 	r3,1             #enable global interrupts
+ wrctl 	ctl0,r3			       
+ 
+ 
+ LOOP:
+ 
+ movia r4, HEX0_3      #move address of HEX 0-3 into r4
+ movia r2, 0xf938383f  #set letters 'E','L','L','0'
+ 
+ movia r4, HEX4_5      #move address of HEX 4-5 into r4
+ movia r2, 0x00000076  # set letter 'H'
+ 
+ movia r3, JP1         #move address of JP1 into r3
+ movia r2, 0xffdfffff  #enable state bit and keep motors off when no interrupt
+ stwio r2,0(r3)        #store into JP1
+ 
+ br LOOP
+ 
+ 
+ 

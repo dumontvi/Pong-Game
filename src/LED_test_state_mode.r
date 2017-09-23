@@ -1,14 +1,14 @@
 
-.equ GPIO_JP1,	 0xFF200060         /*GPIO_JP1*/
-.equ GPIO_JP2,	 0xFF200070         /*GPIO_JP2*/
+.equ GPIO_JP1,	 0x10000060         /*GPIO_JP1*/
+.equ GPIO_JP2,	 0x10000070         /*GPIO_JP2*/
 .equ ADDR_JP1_IRQ, 0x0800           /* IRQ line for for GPIO JP1 (bit 11) */
-.equ ADDR_JP1_Edge, 0xFF20006C      /* address Edge Capture register GPIO JP1 */
+.equ ADDR_JP1_Edge, 0x1000006C      /* address Edge Capture register GPIO JP1 */
 .equ ADDR_JP2_IRQ, 0x1000           /* IRQ line for for GPIO JP2 (bit 12) */
-.equ ADDR_JP2_Edge, 0xFF20007C      /* address Edge Capture register GPIO JP2 */
-.equ ADDR_GREENLEDS, 0xFF200000	 	/* green LEDs*/
-.equ ADDR_SWITCHES,  0xFF200040	 	/* switches*/
-.equ ADDR_7SEGS_low, 0xFF200020	 	/* 7 segment display 0-3*/
-.equ ADDR_7SEGS_high,0xFF200030	 	/* 7 segment display 4-7*/
+.equ ADDR_JP2_Edge, 0x1000007C      /* address Edge Capture register GPIO JP2 */
+.equ ADDR_GREENLEDS, 0x10000010	 	/* green LEDs*/
+.equ ADDR_SWITCHES,  0x10000040	 	/* switches*/
+.equ ADDR_7SEGS_low, 0x10000020	 	/* 7 segment display 0-3*/
+.equ ADDR_7SEGS_high,0x10000030	 	/* 7 segment display 4-7*/
 
 
 /********************** main program ************************/
@@ -26,7 +26,7 @@ _start:
  stwio  r3, 0(r2)
 
 #load threshold value into sensors
-#sensor 1 M,
+#sensor 1
 
  movia  r3,0xfabffbff			/* load threshold value HEX 5 for sensor 1 on lego controller*/
  stwio r3,0(r2)		        
@@ -36,6 +36,20 @@ _start:
  movia  r3,0xfabfefff			/* load threshold value HEX 5 for sensor 2 on lego controller*/
  stwio r3,0(r2)	
 
+#sensor 3
+
+ movia  r3,0xfabfbfff			/* load threshold value HEX 5 for sensor 3 on lego controller*/
+ stwio r3,0(r2)	
+
+#sensor 4
+
+ movia  r3,0xfabeffff			/* load threshold value HEX 5 for sensor 4 on lego controller*/
+ stwio r3,0(r2)	
+ 
+ #sensor 5
+
+ movia  r3,0xfabbffff			/* load threshold value HEX 5 for sensor 5 on lego controller*/
+ stwio r3,0(r2)	
 
  movia  r3,0xffdfffff           /* turn on state mode */		   
  stwio  r3, 0(r2) 
@@ -59,7 +73,7 @@ again:
  movia  r2, GPIO_JP1              /* load GPIO JP1 into r2 */
  movia  r4, ADDR_7SEGS_low        /* load low 4 HEX display into r4*/
  
- movia 	r5, 0x0000000f			  /* load value into lower HEX display*/
+ movia 	r5, 0x6d073f73			  /* load value into lower HEX display*/
  stwio  r5, 0(r4)
               
  movia   r3, 0xffdfffff           /* keep motors off when no interrupts enable state bit*/
