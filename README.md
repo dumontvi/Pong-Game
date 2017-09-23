@@ -14,6 +14,7 @@ This project recreates the Pong Game and provides the user with number of option
 ![alt text](https://github.com/dumontvi/Pong-Game/blob/master/project_pics/flex_sensors%20(4).JPG)
 
 3) Lego Light Sensors:
+
 ![alt text](https://github.com/dumontvi/Pong-Game/blob/master/project_pics/light_Sensors.jpg)
 
 4) Intel FPGA Monitor Program software: Software under downloads at "university.altera.com".
