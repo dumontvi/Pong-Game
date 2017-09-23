@@ -5,4 +5,17 @@ This project recreates the Pong Game and provides the user with number of option
 
 # Requirements:
 1) Altera DE1-Soc FPGA:
-[!alt text](http://www.terasic.com.tw/attachment/archive/870/image/DE1-SoC_top45_01.jpg)
+[!alt text](https://github.com/dumontvi/Pong-Game/blob/master/project_pics/DE1-SoC_top45_01.jpg)
+
+2) Flex Sensors on Gloves:
+[!alt text](https://github.com/dumontvi/Pong-Game/blob/master/project_pics/flex_sensors%20(1).JPG)
+[!alt text](https://github.com/dumontvi/Pong-Game/blob/master/project_pics/flex_sensors%20(2).JPG)
+[!alt text](https://github.com/dumontvi/Pong-Game/blob/master/project_pics/flex_sensors%20(3).JPG)
+[!alt text](https://github.com/dumontvi/Pong-Game/blob/master/project_pics/flex_sensors%20(4).JPG)
+
+3) Lego Light Sensors:
+[!alt text](https://github.com/dumontvi/Pong-Game/blob/master/project_pics/light_Sensors.jpg)
+
+4) Intel FPGA Monitor Program software: Software under downloads at "university.altera.com".
+
+
